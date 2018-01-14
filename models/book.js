@@ -38,22 +38,22 @@ var bookSchema = mongoose.Schema({
 var Book = module.exports = mongoose.model('Book', bookSchema);
 
 // Get Books
-module.exports.getBooks = (callback, limit) => {
+module.exports.getBooks = function(callback, limit) {
   Book.find(callback).limit(limit);
 }
 
 // Get Book
-module.exports.getBookById = (id, callback) => {
+module.exports.getBookById = function(id, callback) {
   Book.findById(id, callback);
 }
 
 // Add Book
-module.exports.addBook = (book, callback) => {
+module.exports.addBook = function(book, callback) {
   Book.create(book, callback);
 }
 
 // Update Book
-module.exports.updateBook = (id, book, options, callback) => {
+module.exports.updateBook = function(id, book, options, callback) {
   var query = {_id: id};
   var { title, genre, description, author, publisher, pages, image_url, buy_url } = book;
   var update = {
@@ -70,7 +70,7 @@ module.exports.updateBook = (id, book, options, callback) => {
 }
 
 // Delete Book
-module.exports.deleteBook = (id, callback) => {
+module.exports.deleteBook = function(id, callback) {
   var query = {_id: id};
   Book.remove(query, callback);
 }
